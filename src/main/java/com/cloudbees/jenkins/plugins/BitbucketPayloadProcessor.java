@@ -43,7 +43,15 @@ public class BitbucketPayloadProcessor {
             JSONObject repo = payload.getJSONObject("repository");
             LOGGER.log(Level.INFO, "Received commit hook notification for {0}", repo);
 
-            String user = payload.getJSONObject("actor").getString("username");
+            
+            String user;
+            
+            try {
+                user = payload.getJSONObject("actor").getString("username");
+            } catch(Exception e) {
+                user = payload.getJSONObject("actor").getString("nickname");
+            } 
+
             String url = repo.getJSONObject("links").getJSONObject("html").getString("href");
             String scm = repo.has("scm") ? repo.getString("scm") : "git";
 
