@@ -15,3 +15,16 @@ freeStyleJob('test-job') {
   }
 }
 ```
+
+# Get source, Compile, and Install
+To compile the plugin and install on Jenkins:
+
+```
+$ sudo apt update
+$ sudo apt install maven
+$ git clone git@github.com:vorjdux/bitbucket-plugin.git
+$ cd bitbucket-plugin
+$ mvn install
+$ mvn package
+# Upload the generated target/bitbucket.hpi in the plugins manager on your Jenkins web cli instance. 
+```
